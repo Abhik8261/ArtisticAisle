@@ -40,12 +40,12 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 
 // Get All Product
 exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
-  const resultPerPage =8;
+  const resultPerPage = 8;
   const productsCount = await Product.countDocuments();
 
   const apiFeature = new ApiFeatures(Product.find(), req.query)
     .search()
-    //.filter();
+    .filter();
 
   let products = await apiFeature.query;
 
@@ -132,7 +132,7 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
     new: true,
     runValidators: true,
     useFindAndModify: false,
-  }); 
+  });
 
   res.status(200).json({
     success: true,
